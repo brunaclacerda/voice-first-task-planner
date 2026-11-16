@@ -1,0 +1,20 @@
+[project]
+name = "voice-first-task-planner"
+version = "0.1.0"
+description = "Voice-First AI Task Manager with Gamification"
+readme = "README.md"
+authors = [
+    { name = "Bruna Silva", email = "brunaclacerda@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.163.1",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.scripts]
+voice-first-task-planner = "voice_first_task_planner:main"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
