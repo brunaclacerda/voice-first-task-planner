@@ -11,6 +11,10 @@ from .core.logging import setup_logger
 settings = get_settings()
 
 logger = setup_logger(__name__)
+setup_logger("sqlalchemy.pool").setLevel(settings.db_pool_log_level)
+setup_logger("psycopg").setLevel(settings.psycopg_log_level)
+setup_logger("sqlalchemy.engine").setLevel(settings.db_engine_log_level)
+
 
 app = FastAPI(title=settings.app_name, debug=settings.debug, lifespan=lifespan)
 

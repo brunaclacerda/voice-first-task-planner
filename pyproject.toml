@@ -9,7 +9,11 @@ authors = [
 requires-python = ">=3.14"
 dependencies = [
     "fastapi[standard]>=0.163.1",
+    "psycopg[binary]>=3.3.9",
+    "pycopg[binary]>=1.2.0",
     "pydantic-settings>=2.16.3",
+    "sqlalchemy[asyncio]>=2.1.9",
+    "uuid-utils>=1.2.0",
     "uvicorn[standard]>=0.54.0",
 ]
 
@@ -22,3 +26,6 @@ build-backend = "uv_build"
 
 [tool.fastapi]
 entrypoint = "app.main:app"
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends"]
