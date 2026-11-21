@@ -1,5 +1,3 @@
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
@@ -7,23 +5,15 @@ from fastapi.responses import JSONResponse
 from .api.router import router
 from .core.config import get_settings
 from .core.exceptions import AppError
+from .core.lifespan import lifespan
 from .core.logging import setup_logger
-
-logger = setup_logger(__name__)
-
-
-@asynccontextmanager
-async def lifespan(_app: FastAPI):
-    logger.info("Initializing Application Startup")
-    logger.info("Successfully Completed Application Startup")
-
-    yield
-    logger.info("Application shutdown")
-
 
 settings = get_settings()
 
+logger = setup_logger(__name__)
+
 app = FastAPI(title=settings.app_name, debug=settings.debug, lifespan=lifespan)
+
 
 app.include_router(router)
 
